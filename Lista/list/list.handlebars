@@ -1,0 +1,37 @@
+<div class="p-2">
+    
+
+<div class="overflow-x-auto">
+  <table class="table table-zebra">
+   <thead>
+    
+    <tr><p>{{this.competition}}</p></tr>
+    
+    
+    <tr>
+                <th>ID</th>
+                <th>Ime i Prezime</th>               
+                <th>Bodovi</th>
+            </tr>
+        </thead>
+        <!-- body -->
+        <tbody>
+
+            {{#each result.items}}
+            <tr id="row-{{this.id}}">
+                <td>{{this.participant}}</td>
+                <td>{{this.name}}</td>
+                               
+                <td>{{this.Score}}</td>
+
+            </tr>
+            {{/each}}
+        </tbody>
+      
+  </table>
+
+
+
+</div>
+
+</div>
