@@ -111,7 +111,7 @@ router.get("/score/:id", function (req, res, next) {
       return;
     }
   
-    const stmt = db.prepare("UPDATE participants SET points = ? WHERE id = ?;");
+    const stmt = db.prepare("UPDATE participants SET score = ? WHERE id = ?;");
     const updateResult = stmt.run(score, req.params.id); 
   
     if (updateResult.changes && updateResult.changes === 1) {
@@ -159,6 +159,49 @@ router.get("/list/:id", function (req, res, next) {
     
     
   });
+
+  router.get("/korisnici", function (req, res, next) {
+   
+    const stmt = db.prepare(
+        `
+        SELECT u.id AS ID, u.name AS name, u.verified AS verified
+        FROM  users u  
+        
+        `
+      );
+    const dbResult = stmt.all();
+
+
+
+    res.render("../korisnici/korisnici", { result: { items: dbResult } });
+
+
+  });
+
+
+  router.post("/verify/:id", function (req, res, next) {
+   
+    const stmt = db.prepare("UPDATE users SET verified = 1 WHERE ID = ?");
+    stmt.run(verified, req.params.id);
+
+    const dbResult = stmt.all();
+
+    res.render("../korisnici/korisnici", { result: { items: dbResult } });
+
+  });
+
+  router.post("/UNveryfi/:id", function (req, res, next) {
+   
+    const stmt = db.prepare("UPDATE users SET verified = 0 WHERE ID = ?");
+    stmt.run(verified, req.params.id);
+
+    const dbResult = stmt.all();
+
+    res.render("../korisnici/korisnici", { result: { items: dbResult } });
+
+  });
+
+  
 
 
 

@@ -1,0 +1,55 @@
+<div class="p-2">
+
+<style>
+
+    table, thead,tbody, tr, th {
+        border-style: solid;
+        border-width: 2px;
+        border-color: black;
+        text-align: center
+        ;
+    }
+
+</style>
+
+    <div class="flex flex-wrap gap-2 bg-base-200 p-2">
+        <table class="table table-zebra">
+            <thead>
+
+                <tr>
+                    <h1>Korisnici</h1>
+                </tr>
+
+
+                <tr>
+                    <th>Ime</th>
+                    <th>Status verifikacije</th>
+
+                </tr>
+            </thead>
+            <!-- body -->
+            <tbody>
+
+                {{#each result.items}}
+                <tr id="row-{{this.id}}">
+                    <td>{{this.name}}</td>
+                    <td>{{this.verified}} 
+                        
+                            <button class="btn btn-success btn-xs btn-block" href="/competitions/veryfi/{{this.id}}">Verify</button>
+                            <button class="btn btn-error btn-xs btn-block" href="/competitions/UNveryfi/{{this.id}}">Remove veryifcation</button>
+                        
+                    </td>
+                    
+                        
+                    
+                </tr>
+                {{/each}}
+            </tbody>
+
+        </table>
+
+
+
+    </div>
+
+</div>
